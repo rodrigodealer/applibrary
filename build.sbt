@@ -20,18 +20,19 @@ libraryDependencies ++= Seq(
   "com.twitter.finatra" %% "finatra-slf4j" % versions.finatra,
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
-  "com.twitter.inject" %% "inject-server" % versions.finatra % "test",
-  "com.twitter.inject" %% "inject-app" % versions.finatra % "test",
-  "com.twitter.inject" %% "inject-core" % versions.finatra % "test",
-  "com.twitter.inject" %% "inject-modules" % versions.finatra % "test",
+  "com.twitter.inject"  %% "inject-server" % versions.finatra % "test",
+  "com.twitter.inject"  %% "inject-app" % versions.finatra % "test",
+  "com.twitter.inject"  %% "inject-core" % versions.finatra % "test",
+  "com.twitter.inject"  %% "inject-modules" % versions.finatra % "test",
   "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test",
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject" %% "inject-server" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject" %% "inject-app" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject" %% "inject-core" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject" %% "inject-modules" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject"  %% "inject-server" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject"  %% "inject-app" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject"  %% "inject-core" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject"  %% "inject-modules" % versions.finatra % "test" classifier "tests",
 
-  "org.mockito" % "mockito-core" % versions.mockito % "test",
-  "org.scalatest" %% "scalatest" % versions.scalatest % "test"
+  "org.mockito"         % "mockito-core" % versions.mockito % "test",
+  "org.scalatest"       %% "scalatest" % versions.scalatest % "test",
+  "junit"               % "junit" % "4.12" % "test"
 )
