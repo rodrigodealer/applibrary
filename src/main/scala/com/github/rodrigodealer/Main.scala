@@ -7,7 +7,9 @@ import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.logging.filter.{LoggingMDCFilter, TraceIdMDCFilter}
 import com.twitter.finatra.logging.modules.Slf4jBridgeModule
 
-object Main extends HttpServer {
+object Server extends Main
+
+class Main extends HttpServer {
 
   override def modules = Seq(Slf4jBridgeModule)
 
