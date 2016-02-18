@@ -1,6 +1,6 @@
 package com.github.rodrigodealer.controller
 
-import com.github.rodrigodealer.Main
+import com.github.rodrigodealer.core.Main
 import com.twitter.finagle.http.Status
 import com.twitter.finatra.http.test.EmbeddedHttpServer
 import com.twitter.inject.app.FeatureTest
