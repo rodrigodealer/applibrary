@@ -5,7 +5,7 @@ version := "0.0.1-SNAPSHOT"
 scalaVersion := "2.11.7"
 
 lazy val versions = new {
-  val finatra = "2.1.3"
+  val finatra = "2.1.4"
   val guice = "4.0"
   val mockito = "1.9.5"
   val scalatest = "2.2.3"
@@ -36,5 +36,4 @@ libraryDependencies ++= Seq(
   "org.mockito"         % "mockito-core" % versions.mockito % "test",
   "org.scalatest"       %% "scalatest" % versions.scalatest % "test",
   "junit"               % "junit" % "4.12" % "test"
-
 )

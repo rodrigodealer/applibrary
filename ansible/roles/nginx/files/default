@@ -1,5 +1,5 @@
 upstream backend {
-    server localhost:9999;
+    server localhost:8888;
 }
 
 server {
