@@ -1,4 +1,4 @@
-package com.github.rodrigodealer.controller
+package com.ts.docs.controller
 
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller

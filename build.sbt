@@ -20,7 +20,9 @@ libraryDependencies ++= Seq(
   "com.twitter.finatra" %% "finatra-slf4j" % versions.finatra,
   "com.github.seratch" %% "awscala" % "0.5.+",
   "com.scalapenos" %% "riak-scala-client" % "0.9.5",
-  "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
+  "com.twitter" %% "finagle-redis" % "6.33.0",
+
+"com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
   "com.twitter.inject"  %% "inject-server" % versions.finatra % "test",
   "com.twitter.inject"  %% "inject-app" % versions.finatra % "test",
   "com.twitter.inject"  %% "inject-core" % versions.finatra % "test",
@@ -37,3 +39,5 @@ libraryDependencies ++= Seq(
   "org.scalatest"       %% "scalatest" % versions.scalatest % "test",
   "junit"               % "junit" % "4.12" % "test"
 )
+
+libraryDependencies += "com.asprise.ocr" % "java-ocr-api" % "[15,)"

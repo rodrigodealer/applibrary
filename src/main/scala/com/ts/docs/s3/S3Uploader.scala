@@ -1,4 +1,4 @@
-package com.github.rodrigodealer.s3
+package com.ts.docs.s3
 
 import java.io.File
 
