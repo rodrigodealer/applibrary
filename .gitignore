@@ -3,3 +3,4 @@ target
 .idea*
 .vagrant
 ansible/playbook.retry
+node_modules/

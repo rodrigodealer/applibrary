@@ -22,22 +22,21 @@ libraryDependencies ++= Seq(
   "com.scalapenos" %% "riak-scala-client" % "0.9.5",
   "com.twitter" %% "finagle-redis" % "6.33.0",
 
-"com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
-  "com.twitter.inject"  %% "inject-server" % versions.finatra % "test",
-  "com.twitter.inject"  %% "inject-app" % versions.finatra % "test",
-  "com.twitter.inject"  %% "inject-core" % versions.finatra % "test",
-  "com.twitter.inject"  %% "inject-modules" % versions.finatra % "test",
+  "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
+  "com.twitter.inject" %% "inject-server" % versions.finatra % "test",
+  "com.twitter.inject" %% "inject-app" % versions.finatra % "test",
+  "com.twitter.inject" %% "inject-core" % versions.finatra % "test",
+  "com.twitter.inject" %% "inject-modules" % versions.finatra % "test",
   "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test",
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject"  %% "inject-server" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject"  %% "inject-app" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject"  %% "inject-core" % versions.finatra % "test" classifier "tests",
-  "com.twitter.inject"  %% "inject-modules" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject" %% "inject-server" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject" %% "inject-app" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject" %% "inject-core" % versions.finatra % "test" classifier "tests",
+  "com.twitter.inject" %% "inject-modules" % versions.finatra % "test" classifier "tests",
 
-  "org.mockito"         % "mockito-core" % versions.mockito % "test",
-  "org.scalatest"       %% "scalatest" % versions.scalatest % "test",
-  "junit"               % "junit" % "4.12" % "test"
+  "org.mockito" % "mockito-core" % versions.mockito % "test",
+  "org.scalatest" %% "scalatest" % versions.scalatest % "test",
+  "junit" % "junit" % "4.12" % "test"
 )
 
-libraryDependencies += "com.asprise.ocr" % "java-ocr-api" % "[15,)"

@@ -1,15 +1,12 @@
 package com.ts.docs.core
 
-import java.io.{BufferedOutputStream, File, FileOutputStream}
-import com.ts.docs.{Record, Storage, RiakStorage, RedisStorage}
-import com.ts.docs.controller.{UploadController, PingController}
-import com.twitter.finagle.{Http, Service, http}
+import com.ts.docs.controller.{PingController, UploadController}
+import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finatra.http.HttpServer
-import com.twitter.finatra.http.filters.CommonFilters
+import com.twitter.finatra.http.filters.{CommonFilters, LoggingMDCFilter, TraceIdMDCFilter}
 import com.twitter.finatra.http.routing.HttpRouter
-import com.twitter.util.{Await, Future}
 
-
+/*
 object Finagle {
 
   def createStorage(s: Option[String]) = s.filterNot(_.isEmpty) match {
@@ -42,6 +39,7 @@ object Finagle {
   }
 
 }
+*/
 
 object Finatra extends Main {}
 
@@ -51,6 +49,8 @@ class Main extends HttpServer {
 
   override def configureHttp(router: HttpRouter) {
     router
+      .filter[LoggingMDCFilter[Request, Response]]
+      .filter[TraceIdMDCFilter[Request, Response]]
       .filter[CommonFilters]
       .add[PingController]
       .add[UploadController]

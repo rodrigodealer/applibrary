@@ -1,10 +1,13 @@
 
-local data = string.rep("abc", 18000)
+counter = 0
+local data = string.rep("" .. math.random(1000,1000), 18000)
 
 request = function()
-    path = "/upload"
+    path = "/docs"
     wrk.headers["Content-Type"] = "multipart/form-data; boundary=--------------------31063722920652------------------------------31063722920652"
-    wrk.body = data
+    wrk.headers["X-Tradeshift-TenantId"] = "gm"
+    counter = counter + 1
+    wrk.body = data .. counter .. math.random(10000000000)
     return wrk.format("POST", path)
 end
 

@@ -26,6 +26,13 @@ class RedisStorage extends Storage {
         res    <- redisClient.set(StringToChannelBuffer(record.key), buffer)
       } yield true
   }
+
+  override def add(record: Record): Future[Boolean] = {
+    for {
+      buffer <- read(record.value)
+      res    <- redisClient.sAdd(StringToChannelBuffer(record.key), buffer :: Nil)
+    } yield true
+  }
 }
 
 object IOUtils {
@@ -41,6 +48,7 @@ object IOUtils {
 
 trait Storage {
   def set(record: Record): Future[Boolean]
+  def add(record: Record): Future[Boolean]
 }
 
 class RiakStorage(bucketName: String) extends Storage {
@@ -63,6 +71,7 @@ class RiakStorage(bucketName: String) extends Storage {
     client(newReq) map (_.getStatusCode() == 201)
   }
 
+  override def add(record: Record): Future[Boolean] = ???
 }
 
 case class Record(key: String, value: Reader)
