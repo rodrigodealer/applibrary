@@ -2,14 +2,13 @@ package com.ts.docs.controller
 
 import java.util.UUID
 
+import com.google.inject.Inject
 import com.ts.docs.{Record, RedisStorage}
-import com.twitter.finagle.http.{Response, Request}
+import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finatra.http.Controller
 import com.twitter.util.Future
 
-class UploadController extends Controller {
-
-  val storage = new RedisStorage
+class UploadController @Inject()(storage: RedisStorage) extends Controller {
 
   post("/docs") { req: Request =>
     valid(req) {

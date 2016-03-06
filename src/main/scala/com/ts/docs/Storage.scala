@@ -1,22 +1,29 @@
 package com.ts.docs
 
+import com.google.inject.Inject
+import com.ts.docs.IOUtils._
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.http.Method.Post
 import com.twitter.finagle.http.Version.Http11
 import com.twitter.finagle.http.{Http, Request}
 import com.twitter.finagle.redis.util.StringToChannelBuffer
-import com.twitter.finagle.redis.{TransactionalClient, Redis}
+import com.twitter.finagle.redis.{Redis, TransactionalClient}
+import com.twitter.finagle.stats.StatsReceiver
+import com.twitter.finatra.annotations.Flag
 import com.twitter.io.Reader
 import com.twitter.util.Future
 import org.jboss.netty.buffer.{ChannelBuffer, ChannelBuffers}
-import IOUtils._
 
-class RedisStorage extends Storage {
+class RedisStorage @Inject()(statsReceiver: StatsReceiver, @Flag("redisHost")  host: String)  extends Storage {
+
+  val uploaded = statsReceiver.counter("uploaded")
 
   val redisClient = TransactionalClient(ClientBuilder()
     .codec(new Redis())
-    .hosts("localhost:6379")
+    .name("Redis File Repository")
+    .hosts(host)
     .hostConnectionLimit(100)
+    .reportTo(statsReceiver)
     .keepAlive(true)
     .buildFactory())
 
@@ -24,7 +31,10 @@ class RedisStorage extends Storage {
       for {
         buffer <- read(record.value)
         res    <- redisClient.set(StringToChannelBuffer(record.key), buffer)
-      } yield true
+      } yield {
+        uploaded.incr()
+        true
+      }
   }
 
   override def add(record: Record): Future[Boolean] = {
