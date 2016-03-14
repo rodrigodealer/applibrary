@@ -11,7 +11,7 @@ import com.twitter.io.Reader
 import com.twitter.util.Future
 import org.jboss.netty.buffer.{ChannelBuffer, ChannelBuffers}
 
-class RedisStorage @Inject()(statsReceiver: StatsReceiver, @Flag("redisHost")  host: String)  extends Storage {
+class RedisStorage @Inject()(statsReceiver: StatsReceiver, @Flag("redisHost")  host: String) extends Storage {
 
   val uploaded = statsReceiver.counter("uploaded")
 

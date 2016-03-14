@@ -1,0 +1,11 @@
+{
+  "name": "quickstart",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "aglio": "2.2.0",
+    "dredd": "1.0.5",
+    "drakov": "0.2.1"
+  },
+  "engine": "node 5.7.0"
+}
