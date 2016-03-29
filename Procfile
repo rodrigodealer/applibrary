@@ -1,1 +1,1 @@
-web:  /bin/sbt "run -http.port=:$PORT"
+web:  ./bin/sbt "run -http.port=:$PORT"
