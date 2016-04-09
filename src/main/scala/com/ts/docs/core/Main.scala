@@ -20,7 +20,6 @@ class Main extends HttpServer {
       .filter[TraceIdMDCFilter[Request, Response]]
       .filter[CommonFilters]
       .add[PingController]
-      .add[UploadController]
   }
 
 }

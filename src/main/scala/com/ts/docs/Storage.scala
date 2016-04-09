@@ -13,8 +13,6 @@ import org.jboss.netty.buffer.{ChannelBuffer, ChannelBuffers}
 
 class RedisStorage @Inject()(statsReceiver: StatsReceiver, @Flag("redisHost")  host: String) extends Storage {
 
-  val uploaded = statsReceiver.counter("uploaded")
-
   val redisClient = TransactionalClient(ClientBuilder()
     .codec(new Redis())
     .name("Redis File Repository")
@@ -29,7 +27,6 @@ class RedisStorage @Inject()(statsReceiver: StatsReceiver, @Flag("redisHost")  h
         buffer <- read(record.value)
         res    <- redisClient.set(StringToChannelBuffer(record.key), buffer)
       } yield {
-        uploaded.incr()
         true
       }
   }

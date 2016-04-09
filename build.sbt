@@ -21,6 +21,7 @@ libraryDependencies ++= Seq(
   "com.github.seratch" %% "awscala" % "0.5.+",
   "com.scalapenos" %% "riak-scala-client" % "0.9.5",
   "com.twitter" %% "finagle-redis" % "6.33.0",
+  "com.sksamuel.elastic4s" %% "elastic4s" % "1.6.0",
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
   "com.twitter.inject" %% "inject-server" % versions.finatra % "test",
