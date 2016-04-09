@@ -1,6 +1,6 @@
 package com.ts.docs.core
 
-import com.ts.docs.controller.{PingController, UploadController}
+import com.ts.docs.controller.PingController
 import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finatra.http.HttpServer
 import com.twitter.finatra.http.filters.{CommonFilters, LoggingMDCFilter, TraceIdMDCFilter}
