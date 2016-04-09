@@ -1,4 +1,4 @@
-name := "quickstart"
+name := "pentelhus"
 
 version := "0.0.1-SNAPSHOT"
 
@@ -40,4 +40,3 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % versions.scalatest % "test",
   "junit" % "junit" % "4.12" % "test"
 )
-
