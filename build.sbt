@@ -22,6 +22,7 @@ libraryDependencies ++= Seq(
   "com.scalapenos" %% "riak-scala-client" % "0.9.5",
   "com.twitter" %% "finagle-redis" % "6.33.0",
   "com.sksamuel.elastic4s" %% "elastic4s-core" % "2.3.0",
+  "org.slf4j" % "slf4j-simple" % "1.7.21",
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
   "com.twitter.inject" %% "inject-server" % versions.finatra % "test",
@@ -39,4 +40,8 @@ libraryDependencies ++= Seq(
   "org.mockito" % "mockito-core" % versions.mockito % "test",
   "org.scalatest" %% "scalatest" % versions.scalatest % "test",
   "junit" % "junit" % "4.12" % "test"
+)
+
+dependencyOverrides ++= Set(
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
 )
