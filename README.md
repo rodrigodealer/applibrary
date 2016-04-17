@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rodrigodealer/pentelhus.svg?branch=master)](https://travis-ci.org/rodrigodealer/pentelhus)
+
 ## Missing
 
 - Search by aggregate
