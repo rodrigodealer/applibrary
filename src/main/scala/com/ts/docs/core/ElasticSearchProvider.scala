@@ -1,7 +1,7 @@
-package com.ts.docs
+package com.ts.docs.core
 
 import com.google.inject.Provides
-import com.sksamuel.elastic4s.{ElasticsearchClientUri, ElasticClient}
+import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
 import com.twitter.inject.TwitterModule
 import org.elasticsearch.common.settings.Settings
 
