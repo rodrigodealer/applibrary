@@ -1,6 +1,3 @@
-FORMAT: 1A
-HOST: https://localhost
-
 ## Missing
 
 - Search by aggregate

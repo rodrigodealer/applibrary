@@ -1,4 +1,0 @@
-hooks:
-  restart:
-    before:
-        - sudo redis-server /etc/redis/redis.conf
