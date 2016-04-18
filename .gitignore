@@ -4,3 +4,4 @@ target
 .vagrant
 ansible/playbook.retry
 node_modules/
+data/

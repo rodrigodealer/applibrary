@@ -10,4 +10,8 @@ class AppsController @Inject()(apps: Apps) extends Controller {
   get("/apps") { request: Request =>
     apps.findAll
   }
+
+  get("/apps/by/:field/:value") { request : Request =>
+    response.ok(s"${request.params("field")}=${request.params("value")}")
+  }
 }
