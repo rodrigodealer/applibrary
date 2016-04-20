@@ -9,39 +9,34 @@ import com.ts.docs.core.json.Parser
 import com.ts.docs.models.App
 import com.twitter.util.Future
 
+import com.sksamuel.elastic4s.jackson.ElasticJackson.Implicits._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
 class Apps @Inject()(implicit client: ElasticClient) extends Parser {
 
+  val appsIndex : (String, String) = "apps" -> "external"
+
   {
     client.execute {
       create index "apps" mappings (
-        "external" as(
+        "external" fields (
           "id" typed StringType,
           "name" typed StringType boost 4,
-          "creation" typed StringType
+          "creation" typed StringType,
+          "vendorId" typed StringType
           )
         )
     }
   }
 
-  def post(app: App) = {
-    client.execute {
-      index into "apps" -> "external" id app.id fields (
-        "name" -> app.name,
-        "id" -> app.id,
-        "creation" -> app.creation
-        )
-    }
-  }
+  def post(app: App) = client.execute(index into appsIndex id app.id source app)
 
   def findAll: Future[Seq[App]] = client.execute {
-    search in "apps" -> "external" query matchAllQuery
+    search in appsIndex query matchAllQuery
   } map parse[App]
 
   def findBy(field: String, value: String) : Future[Seq[App]] = client.execute {
-    search in "apps" -> "external" query { matchQuery(field, value) }
+    search in appsIndex query { matchQuery(field, value) }
   } map parse[App]
-
 }

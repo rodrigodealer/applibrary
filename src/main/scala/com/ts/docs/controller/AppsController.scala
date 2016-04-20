@@ -2,12 +2,12 @@ package com.ts.docs.controller
 
 import com.google.inject.Inject
 import com.ts.docs.core.json.Parser
-import com.ts.docs.models.App
+import com.ts.docs.models.{JsonRequest, Json, App}
 import com.ts.docs.services.Apps
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 
-class AppsController @Inject()(apps: Apps) extends Controller with Parser {
+class AppsController @Inject()(apps: Apps) extends Controller with Parser with JsonRequest {
 
   get("/apps") { request: Request =>
     apps.findAll
@@ -21,7 +21,11 @@ class AppsController @Inject()(apps: Apps) extends Controller with Parser {
   }
 
   post("/apps") { request : Request =>
-    apps.post(App.fromString(request.getContentString()))
-    response.created
+    withDeserialization[App](request) {
+      apps.post(Json.deserialize[App](request.getContentString()))
+      response.created
+    } { error =>
+      response.internalServerError()
+    }
   }
 }
