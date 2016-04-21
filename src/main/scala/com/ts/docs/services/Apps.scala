@@ -3,7 +3,7 @@ package com.ts.docs.services
 import com.google.inject.Inject
 import com.sksamuel.elastic4s.ElasticClient
 import com.sksamuel.elastic4s.ElasticDsl.{search, _}
-import com.sksamuel.elastic4s.mappings.FieldType.StringType
+import com.sksamuel.elastic4s.mappings.FieldType.{BooleanType, StringType}
 import com.ts.docs.core.FutureImplicits.ScalaToTwitter
 import com.ts.docs.core.json.Parser
 import com.ts.docs.models.App
@@ -24,9 +24,13 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
           "id" typed StringType,
           "name" typed StringType boost 4,
           "creation" typed StringType,
-          "vendorId" typed StringType
+          "vendorId" typed StringType,
+          nestedField("versions") as (
+            field("id") typed StringType,
+            field("currentActive") typed BooleanType
           )
         )
+      )
     }
   }
 
