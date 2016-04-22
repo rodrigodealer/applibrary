@@ -6,7 +6,7 @@ import com.sksamuel.elastic4s.ElasticDsl.{search, _}
 import com.sksamuel.elastic4s.mappings.FieldType.{BooleanType, StringType}
 import com.ts.docs.core.FutureImplicits.ScalaToTwitter
 import com.ts.docs.core.json.Parser
-import com.ts.docs.models.App
+import com.ts.docs.models.{Version, App}
 import com.twitter.util.Future
 
 import com.sksamuel.elastic4s.jackson.ElasticJackson.Implicits._
@@ -35,6 +35,13 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
   }
 
   def post(app: App) = client.execute(index into appsIndex id app.id source app)
+
+  def activate(app: App, version: Version) = findBy("id", app.id) map { apps =>
+    apps.head.hasVersionActivated(version) match {
+      case true => true
+      case false => post(apps.head.activateVersion(version))
+    }
+  }
 
   def findAll: Future[Seq[App]] = client.execute {
     search in appsIndex query matchAllQuery
