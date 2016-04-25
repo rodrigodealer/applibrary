@@ -24,7 +24,6 @@ libraryDependencies ++= Seq(
   "com.sksamuel.elastic4s" %% "elastic4s-core" % "2.3.0",
   "com.sksamuel.elastic4s" %% "elastic4s-jackson" % "2.3.0",
   "org.slf4j" % "slf4j-simple" % "1.7.21",
-  "com.fasterxml.jackson.core" % "jackson-core" % "2.7.3",
 
   "com.twitter.finatra" %% "finatra-http" % versions.finatra % "test",
   "com.twitter.inject" %% "inject-server" % versions.finatra % "test",
