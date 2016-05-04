@@ -1,5 +1,7 @@
 package com.ts.docs.controller
 
+import java.util.UUID
+
 import com.google.inject.Inject
 import com.ts.docs.core.json.Parser
 import com.ts.docs.models.{Version, JsonRequest, Json, App}

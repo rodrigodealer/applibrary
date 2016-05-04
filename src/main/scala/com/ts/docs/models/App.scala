@@ -15,8 +15,7 @@ case class App(id: String,
   }
 
   def activateVersion(version: Version) = {
-    val activated = versions.filter(_.id ==  version.id).head.copy(currentActive = true)
-    this.versions = versions.dropWhile(_.id == version.id) + activated
+    this.versions = versions.dropWhile(v => v.id == version.id) + version.copy(currentActive = true)
     this
   }
 }
