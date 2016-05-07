@@ -39,7 +39,9 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
 
   def activate(app: App, version: Version) = {
     client.execute {
-      update id app.id in appsIndex  doc nestedField("versions") -> Json.serialize(app.activateVersion(version).versions)
+      update id app.id in appsIndex source app.activateVersion(version)
+    } map { result =>
+      println(result.getGetResult)
     }
   }
 
