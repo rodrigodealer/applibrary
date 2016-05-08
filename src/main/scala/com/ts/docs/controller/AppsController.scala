@@ -2,11 +2,13 @@ package com.ts.docs.controller
 
 import com.google.inject.Inject
 import com.ts.docs.core.json.Parser
-import com.ts.docs.models.{App, Json, JsonRequest, Version}
+import com.ts.docs.models.{App, JsonRequest, Version}
 import com.ts.docs.services.Apps
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 import com.twitter.finatra.request.QueryParam
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class AppsController @Inject()(apps: Apps) extends Controller with Parser with JsonRequest {
 
@@ -16,6 +18,13 @@ class AppsController @Inject()(apps: Apps) extends Controller with Parser with J
 
   get("/apps/by/:field/:value") { request : SearchRequest =>
     apps.findBy(request.field, request.value) map {
+      case result if result.nonEmpty => result
+      case _ => response.notFound(Set())
+    }
+  }
+
+  get("/apps/:id/active") { request : Request =>
+    apps.active(request.getParam("id")) map {
       case result if result.nonEmpty => result
       case _ => response.notFound(Set())
     }
