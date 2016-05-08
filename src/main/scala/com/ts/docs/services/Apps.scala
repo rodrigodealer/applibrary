@@ -56,3 +56,4 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
     search in appsIndex query { matchQuery(field, value) }
   } map parse[App]
 }
+
