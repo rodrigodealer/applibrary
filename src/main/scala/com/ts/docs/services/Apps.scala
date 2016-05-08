@@ -44,9 +44,7 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
     findBy("id", app.id) map {
       case apps if apps.nonEmpty =>
         val updatedApp = apps.head.add(version)
-        client.execute {
-          update id app.id in appsIndex source updatedApp
-        }
+        client.execute (update id app.id in appsIndex source updatedApp)
         Option(updatedApp)
       case _ => Option.empty
     }
@@ -67,4 +65,3 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
     search in appsIndex query { bool(must(matchQuery(field -> value))) }
   } map parse[App]
 }
-
