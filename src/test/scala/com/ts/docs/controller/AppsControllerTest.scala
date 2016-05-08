@@ -71,7 +71,6 @@ class AppsControllerTest extends FeatureTest with ElasticSearchTest {
       withSleep(server.httpPost(s"/apps/$uuid/versions", postBody = versionBody, andExpect = Status.NotFound, withBody = ""), 2000)
     }
   }
-
 }
 
 trait ElasticSearchTest {
