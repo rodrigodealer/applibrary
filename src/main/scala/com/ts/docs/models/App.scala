@@ -5,6 +5,8 @@ import com.sksamuel.elastic4s.source.Indexable
 case class Version(id: String, currentActive: Boolean)
 
 object Version {
+  def deserialize(json: String) = Json.deserialize[Version](json)
+
   def apply(version: String) : Version = Version(version, false)
 }
 
@@ -20,6 +22,11 @@ case class App(id: String,
 
   def activateVersion(version: Version) = {
     this.versions = versions.dropWhile(v => v.id == version.id) + version.copy(currentActive = true)
+    this
+  }
+
+  def add(version: Version) = {
+    this.versions = this.versions + version
     this
   }
 }

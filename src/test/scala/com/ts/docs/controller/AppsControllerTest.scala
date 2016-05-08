@@ -47,7 +47,7 @@ class AppsControllerTest extends FeatureTest with ElasticSearchTest {
   }
 
   "App activation" should {
-    "should create an app and activate it" in {
+    "should create an app and activate a version" in {
       val uuid = UUID.randomUUID()
       val jsonBody = s"""{"id":"$uuid","name":"$uuid","creation":"1234","versions":[{"id":"123123123","current_active":false}]}"""
       withSleep(server.httpPost("/apps", jsonBody, andExpect = Status.Created), 2000)
@@ -55,6 +55,20 @@ class AppsControllerTest extends FeatureTest with ElasticSearchTest {
       withSleep(server.httpPost(s"/apps/$uuid/activate/123123123", postBody = "", andExpect = Status.Ok), 2000)
 
       server.httpGet(s"/apps/by/name/$uuid", andExpect = Status.Ok, withBody = s"""[{"id":"$uuid","name":"$uuid","creation":"1234","versions":[{"id":"123123123","current_active":true}]}]""")
+    }
+
+    "should create an app and add a version" in {
+      val uuid = UUID.randomUUID()
+      val versionBody = """{"id":"567567567","current_active": false}"""
+      val jsonBody = s"""{"id":"$uuid","name":"$uuid","creation":"1234","versions":[]}"""
+      withSleep(server.httpPost("/apps", jsonBody, andExpect = Status.Created), 2000)
+      withSleep(server.httpPost(s"/apps/$uuid/versions", postBody = versionBody, andExpect = Status.Created, withBody = s"""{"id":"$uuid","name":"$uuid","creation":"1234","versions":[{"id":"567567567","current_active":false}]}"""), 2000)
+    }
+
+    "should try to add a version in an unknown app" in {
+      val uuid = UUID.randomUUID()
+      val versionBody = """{"id":"567567567","current_active": false}"""
+      withSleep(server.httpPost(s"/apps/$uuid/versions", postBody = versionBody, andExpect = Status.NotFound, withBody = ""), 2000)
     }
   }
 

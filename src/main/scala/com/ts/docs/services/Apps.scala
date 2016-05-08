@@ -40,11 +40,22 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
     update id app.id in appsIndex source app.activateVersion(version)
   }
 
+  def addVersion(app: App, version: Version) : Future[Option[App]] = {
+    findBy("id", app.id) map {
+      case apps if apps.nonEmpty =>
+        val updatedApp = apps.head.add(version)
+        client.execute {
+          update id app.id in appsIndex source updatedApp
+        }
+        Option(updatedApp)
+      case _ => Option.empty
+    }
+  }
+
   def active(id: String) : Future[Seq[App]] = client.execute {
     search in appsIndex query {
       bool(must(matchQuery("id" -> id))) filter
-        nestedQuery("versions").query { matchQuery("versions.currentActive" -> true) }
-
+        nestedQuery("versions").query(matchQuery("versions.currentActive" -> true))
     }
   } map parse[App]
 
@@ -53,7 +64,7 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
   } map parse[App]
 
   def findBy(field: String, value: String) : Future[Seq[App]] = client.execute {
-    search in appsIndex query { matchQuery(field, value) }
+    search in appsIndex query { bool(must(matchQuery(field -> value))) }
   } map parse[App]
 }
 

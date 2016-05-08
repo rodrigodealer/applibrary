@@ -37,4 +37,20 @@ class AppTest extends FunSuite {
     assert(app.vendorId == null)
     assert(app.versions.isEmpty)
   }
+
+  test("add a version to an app") {
+    var app = App("123", "123", "123", "123", Set(Version("123", true)))
+    val version = Version("123456", false)
+
+    app = app.add(version)
+    assert(app.versions.size == 2)
+  }
+
+  test("add the same version to an app") {
+    var app = App("123", "123", "123", "123", Set(Version("123", true)))
+    val version = Version("123456", false)
+
+    app = app.add(version).add(version)
+    assert(app.versions.size == 2)
+  }
 }

@@ -23,8 +23,8 @@ class AppsController @Inject()(apps: Apps) extends Controller with Parser with J
     }
   }
 
-  get("/apps/:id/active") { request : Request =>
-    apps.active(request.getParam("id")) map {
+  get("/apps/:id/active") { request : AppByIdRequest =>
+    apps.active(request.id) map {
       case result if result.nonEmpty => result
       case _ => response.notFound(Set())
     }
@@ -45,8 +45,18 @@ class AppsController @Inject()(apps: Apps) extends Controller with Parser with J
     apps.activate(app, version)
     response.ok
   }
+
+  post("/apps/:id/versions") { request : Request =>
+    val app = App(request.getParam("id"))
+    val version = Version.deserialize(request.getContentString())
+    apps.addVersion(app, version) map {
+      case Some(result) => response.created(result)
+      case _ => response.notFound
+    }
+  }
 }
 
+case class AppByIdRequest(@QueryParam id: String)
 
 case class SearchRequest(@QueryParam field: String, @QueryParam value: String)
 
