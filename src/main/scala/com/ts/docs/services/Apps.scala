@@ -22,8 +22,8 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
     client.execute {
       create index "apps" mappings (
         "external" fields (
-          "id" typed StringType,
-          "name" typed StringType boost 4,
+          "id" typed StringType boost 7,
+          "name" typed StringType boost 3,
           "creation" typed StringType,
           "vendorId" typed StringType,
           nestedField("versions") as (

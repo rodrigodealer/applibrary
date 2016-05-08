@@ -11,7 +11,7 @@ class AppTest extends FunSuite {
 
   test("should parse json") {
     val json = "{\"id\":\"123\",\"name\":\"123\",\"creation\":\"123\"}"
-    val app = Json.deserialize[App](json)
+    val app = App.deserialize(json)
     assert(app.id.equals("123"))
     assert(app.name.equals("123"))
     assert(app.creation.equals("123"))
@@ -29,4 +29,12 @@ class AppTest extends FunSuite {
     assert(!appActivated.hasVersionActivated(Version("456", true)))
   }
 
+  test("create an App just with id") {
+    val app = App("123")
+    assert(app.id == "123")
+    assert(app.creation == null)
+    assert(app.name == null)
+    assert(app.vendorId == null)
+    assert(app.versions.isEmpty)
+  }
 }

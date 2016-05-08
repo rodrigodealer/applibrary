@@ -4,6 +4,10 @@ import com.sksamuel.elastic4s.source.Indexable
 
 case class Version(id: String, currentActive: Boolean)
 
+object Version {
+  def apply(version: String) : Version = Version(version, false)
+}
+
 case class App(id: String,
                name: String,
                creation: String,
@@ -20,6 +24,12 @@ case class App(id: String,
   }
 }
 
+object App {
+  def deserialize(json: String) = Json.deserialize[App](json)
+
+  def apply(id: String) : App = App(id, null, null, null, Set())
+}
+
 object AppIndexable extends Indexable[App] {
-  override def json(t: App): String = t.toJson
+  override def json(app: App): String = app.toJson
 }
