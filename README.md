@@ -14,5 +14,6 @@
 
 - Resources for app / version
 
+- Cache resources in Redis
 
 
