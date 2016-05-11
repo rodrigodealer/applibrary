@@ -2,12 +2,17 @@
 
 ## Missing
 
-- Search by aggregate
+- ~~Search by aggregate~~
 
-- Create app
+- ~~Create app~~
 
-- Activate app
+- ~~Activate app~~
 
 - Deactivate app
 
-- Add new version
+- ~~Add new version~~
+
+- Resources for app / version
+
+
+
