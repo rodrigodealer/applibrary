@@ -2,12 +2,14 @@ package com.ts.docs.models
 
 import com.sksamuel.elastic4s.source.Indexable
 
-case class Version(id: String, currentActive: Boolean)
+case class Bundle(css: String, js: String)
+
+case class Version(id: String, currentActive: Boolean, bundle: Option[Bundle])
 
 object Version {
   def deserialize(json: String) = Json.deserialize[Version](json)
 
-  def apply(version: String) : Version = Version(version, false)
+  def apply(version: String) : Version = Version(version, false, Option.empty)
 }
 
 case class App(id: String,

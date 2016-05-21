@@ -27,7 +27,11 @@ class Apps @Inject()(implicit client: ElasticClient) extends Parser {
           "vendorId" typed StringType,
           nestedField("versions") as (
             field("id") typed StringType,
-            field("currentActive") typed BooleanType
+            field("currentActive") typed BooleanType,
+            nestedField("bundle") as (
+              field("css") typed StringType,
+              field("js") typed StringType
+            )
           )
         )
       )
