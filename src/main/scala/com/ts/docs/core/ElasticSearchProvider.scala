@@ -1,9 +1,10 @@
 package com.ts.docs.core
 
 import com.google.inject.Provides
-import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
+import com.sksamuel.elastic4s.ElasticsearchClientUri
+import com.sksamuel.elastic4s.http.{ElasticClient, ElasticProperties}
+import com.sksamuel.elastic4s.{ElasticsearchClientUri, TcpClient}
 import com.twitter.inject.TwitterModule
-import org.elasticsearch.common.settings.Settings
 
 
 object ElasticSearchProvider extends TwitterModule {
@@ -14,11 +15,8 @@ object ElasticSearchProvider extends TwitterModule {
 
   @Provides
   def client =  {
-    val settings = Settings.settingsBuilder()
-      .put("cluster.name", clusterName()).build()
-    ElasticClient.transport(
-      settings,
-      ElasticsearchClientUri("es", List(esHost() -> esPort()))
-    )
+    val uri = ElasticsearchClientUri("elasticsearch://foo:1234,boo:9876?cluster.name=mycluster")
+
+    val client = TcpClient.transport(uri)
   }
 }

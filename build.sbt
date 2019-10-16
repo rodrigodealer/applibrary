@@ -19,8 +19,12 @@ libraryDependencies ++= Seq(
   "com.twitter" %% "finatra-http" % versions.finatra,
   "com.github.seratch" %% "awscala" % "0.5.+",
   "com.twitter" %% "finagle-redis" % "19.10.0",
+  "org.elasticsearch" % "elasticsearch" % "7.4.0",
   "com.sksamuel.elastic4s" %% "elastic4s-core" % "7.3.1",
   "com.sksamuel.elastic4s" %% "elastic4s-jackson" % "6.7.3",
+  "com.sksamuel.elastic4s" %% "elastic4s-http" % "6.7.3",
+  "com.sksamuel.elastic4s" %% "elastic4s-tcp" % "6.2.10",
+  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % "7.3.1",
   "org.slf4j" % "slf4j-simple" % "1.7.21",
 
   "com.twitter" %% "finatra-http" % versions.finatra % "test",
