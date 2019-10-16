@@ -53,3 +53,8 @@ libraryDependencies ++= Seq(
   // testing
   "com.sksamuel.elastic4s" %% "elastic4s-testkit" % versions.elastic4sVersion % "test"
 )
+
+assemblyMergeStrategy in assembly := {
+ case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+ case x => MergeStrategy.first
+}
