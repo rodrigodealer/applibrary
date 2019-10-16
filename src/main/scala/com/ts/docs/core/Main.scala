@@ -12,6 +12,8 @@ class Main() extends HttpServer {
 
   val redisHost = flag("redisHost", "localhost:6379", "Redis Host: localhost:6379")
 
+  override val defaultHttpPort: String = ":8080"
+
 
   override def configureHttp(router: HttpRouter) {
     router
