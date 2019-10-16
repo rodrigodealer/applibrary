@@ -1,9 +1,0 @@
-- name: Install Nginx
-  become: yes
-  apt: pkg=nginx state=installed update_cache=true
-
-- name: Default host file
-  become: yes
-  copy: src=roles/nginx/files/default dest=/etc/nginx/sites-available/default owner=root group=root mode=0644
-  notify:
-    - Start Nginx

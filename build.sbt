@@ -22,6 +22,8 @@ libraryDependencies ++= Seq(
 
   "com.twitter" %% "util-core" % versions.finatra,
 
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
+
   "com.twitter" %% "finatra-http" % versions.finatra % "test",
   "com.twitter" %% "inject-server" % versions.finatra % "test",
   "com.twitter" %% "inject-app" % versions.finatra % "test",

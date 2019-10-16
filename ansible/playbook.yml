@@ -1,6 +1,0 @@
----
-- hosts: nginx
-  roles:
-    - nginx
-    - java
-    - sbt
