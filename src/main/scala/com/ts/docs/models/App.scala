@@ -1,6 +1,6 @@
 package com.ts.docs.models
 
-import com.sksamuel.elastic4s.Indexable
+//import com.sksamuel.elastic4s.Indexable
 
 
 case class Bundle(css: String, js: String)
@@ -29,8 +29,8 @@ object App {
   def apply(id: String) : App = App(id, null, null, null, Set())
 }
 
-object MyImplicits {
-  implicit object AppIndexable extends Indexable[App] {
-    override def json(t: App): String = s""" { "name" : "${t.name}" } """
-  }
-}
+//object MyImplicits {
+//  implicit object AppIndexable extends Indexable[App] {
+//    override def json(t: App): String = s""" { "name" : "${t.name}" } """
+//  }
+//}
