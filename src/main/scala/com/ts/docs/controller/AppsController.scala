@@ -2,15 +2,20 @@ package com.ts.docs.controller
 
 import com.google.inject.Inject
 import com.ts.docs.models.{App, JsonRequest, Version}
+import com.ts.docs.services.Apps
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 import com.twitter.finatra.request.QueryParam
 
 
-class AppsController @Inject()() extends Controller with JsonRequest {
+class AppsController @Inject()(implicit apps: Apps) extends Controller with JsonRequest {
 
   get("/apps") { request: Request =>
+    apps.index()
+  }
 
+  get("/list") { request: Request =>
+    apps.get()
   }
 }
 

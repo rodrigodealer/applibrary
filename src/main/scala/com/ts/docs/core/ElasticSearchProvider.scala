@@ -13,6 +13,7 @@ object ElasticSearchProvider extends TwitterModule {
   @Provides
   def client =  {
 
-    val client = ElasticClient(ElasticProperties("http://localhost:9200"))
+    ElasticClient(ElasticProperties("http://localhost:9200"))
+
   }
 }

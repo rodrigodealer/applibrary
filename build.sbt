@@ -9,7 +9,7 @@ lazy val versions = new {
   val guice = "4.0"
   val mockito = "1.9.5"
   val scalatest = "3.2.0-M1"
-  val elastic4sVersion = "7.3.1"
+  val elastic4sVersion = "6.7.3"
 }
 
 resolvers ++= Seq(
@@ -42,10 +42,9 @@ libraryDependencies ++= Seq(
 
   "com.sksamuel.elastic4s" %% "elastic4s-core" % versions.elastic4sVersion,
 
-  "com.sksamuel.elastic4s" %% "elastic4s-http" % "6.7.3",
+  "com.sksamuel.elastic4s" %% "elastic4s-http" % versions.elastic4sVersion,
 
-  // for the default http client
-  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % versions.elastic4sVersion,
+  "com.sksamuel.elastic4s" %% "elastic4s-jackson" % versions.elastic4sVersion,
 
   // if you want to use reactive streams
   "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % versions.elastic4sVersion,
