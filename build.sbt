@@ -17,12 +17,13 @@ resolvers ++= Seq(
   "Twitter Maven" at "https://maven.twttr.com")
 
 libraryDependencies ++= Seq(
+  "ch.qos.logback"  % "logback-classic"          % "1.2.3",
+
+  "com.twitter"     % "twitter-server-logback-classic_2.12" % versions.finatra,
 
   "com.twitter"     %% "finatra-http"             % versions.finatra,
 
   "com.twitter"     %% "util-core"                % versions.finatra,
-
-  "ch.qos.logback"   % "logback-classic"          % "1.2.3",
 
   "com.twitter"     %% "finatra-http"             % versions.finatra    % "test",
   "com.twitter"     %% "inject-server"            % versions.finatra    % "test",
