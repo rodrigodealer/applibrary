@@ -58,3 +58,6 @@ assemblyMergeStrategy in assembly := {
  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
  case x => MergeStrategy.first
 }
+
+lazy val root = (project in file("."))
+  .enablePlugins(JibPlugin)
