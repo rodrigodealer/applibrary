@@ -18,31 +18,31 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
 
-  "com.twitter" %% "finatra-http" % versions.finatra,
+  "com.twitter"     %% "finatra-http"             % versions.finatra,
 
-  "com.twitter" %% "util-core" % versions.finatra,
+  "com.twitter"     %% "util-core"                % versions.finatra,
 
-  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "ch.qos.logback"   % "logback-classic"          % "1.2.3",
 
-  "com.twitter" %% "finatra-http" % versions.finatra % "test",
-  "com.twitter" %% "inject-server" % versions.finatra % "test",
-  "com.twitter" %% "inject-app" % versions.finatra % "test",
-  "com.twitter" %% "inject-core" % versions.finatra % "test",
-  "com.twitter" %% "inject-modules" % versions.finatra % "test",
+  "com.twitter"     %% "finatra-http"             % versions.finatra    % "test",
+  "com.twitter"     %% "inject-server"            % versions.finatra    % "test",
+  "com.twitter"     %% "inject-app"               % versions.finatra    % "test",
+  "com.twitter"     %% "inject-core"              % versions.finatra    % "test",
+  "com.twitter"     %% "inject-modules"           % versions.finatra    % "test",
 
-  "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",
-  "com.twitter" %% "inject-server" % versions.finatra % "test" classifier "tests",
-  "com.twitter" %% "inject-app" % versions.finatra % "test" classifier "tests",
-  "com.twitter" %% "inject-core" % versions.finatra % "test" classifier "tests",
-  "com.twitter" %% "inject-modules" % versions.finatra % "test" classifier "tests",
+  "com.twitter"     %% "finatra-http"             % versions.finatra    % "test" classifier "tests",
+  "com.twitter"     %% "inject-server"            % versions.finatra    % "test" classifier "tests",
+  "com.twitter"     %% "inject-app"               % versions.finatra    % "test" classifier "tests",
+  "com.twitter"     %% "inject-core"              % versions.finatra    % "test" classifier "tests",
+  "com.twitter"     %% "inject-modules"           % versions.finatra    % "test" classifier "tests",
 
-  "org.mockito" % "mockito-core" % versions.mockito % "test",
-  "org.scalatest" %% "scalatest" % versions.scalatest % "test",
-  "junit" % "junit" % "4.12" % "test",
+  "org.mockito"     % "mockito-core"              % versions.mockito    % "test",
+  "org.scalatest"   %% "scalatest"                % versions.scalatest  % "test",
+  "junit"           % "junit"                     % "4.12"              % "test",
 
-  "com.sksamuel.elastic4s" %% "elastic4s-core" % versions.elastic4sVersion,
+  "com.sksamuel.elastic4s" %% "elastic4s-core"    % versions.elastic4sVersion,
 
-  "com.sksamuel.elastic4s" %% "elastic4s-http" % versions.elastic4sVersion,
+  "com.sksamuel.elastic4s" %% "elastic4s-http"    % versions.elastic4sVersion,
 
   "com.sksamuel.elastic4s" %% "elastic4s-jackson" % versions.elastic4sVersion,
 
